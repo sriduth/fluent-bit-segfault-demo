@@ -14,7 +14,17 @@ One observation is that `.custom-section` is marked as an `ALLOC` type section n
 
 This reflects in the section to segment mapping.
 
+## Marking section as `EXEC`
+
 If `.custom-section` is marked as `EXEC`, it is added to the same segment as `.text`
+
+Build command: 
+
+``` bash
+cc main.c flb_libco/*.c -Iflb_libco -DMARK_EXEC`
+```
+
+
 
 `readelf -l a.out`:
 
@@ -34,7 +44,16 @@ If `.custom-section` is marked as `EXEC`, it is added to the same segment as `.t
    10     .init_array .fini_array .dynamic .got
 ```
 
+## Not marking section as `EXEC`
 
+Build command
+
+``` bash
+cc main.c flb_libco/*.c -Iflb_libco
+```
+
+
+ 
 If `.custom-section` is `ALLOC` only, it is added to a different section which holds only read only
 data.
 
